@@ -19,7 +19,6 @@ public class XPathParser {
             XPathFactory xPathFactory = XPathFactory.newInstance();
             XPath xPath = xPathFactory.newXPath();
             XPathExpression expr = xPath.compile("//currency[code='"+sourceCountry+"']/rate/text()");
-            System.out.println((String) expr.evaluate(doc, XPathConstants.STRING) + "please");
             double sourceRate = Double.parseDouble((String) expr.evaluate(doc, XPathConstants.STRING));
 
             expr = xPath.compile("//currency[code='"+destinationCountry+"']/rate/text()");
