@@ -1,6 +1,7 @@
 package eg.gov.iti.jets;
 
 import eg.gov.iti.jets.Enums.Disclaimer;
+import eg.gov.iti.jets.exception.ParserException;
 import eg.gov.iti.jets.parser.DOMParser;
 import eg.gov.iti.jets.parser.XPathParser;
 import jakarta.jws.WebService;
@@ -12,16 +13,13 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
 
     private static final String EXCHANGE_RATE = "/exchange_rates.xml";
     @Override
-    public double getExchangeRate(String sourceCountry, String destinationCountry, Disclaimer disclaimer) {
-        double exchange_rate = 0.0;
-         switch (disclaimer){
-            case DOM :
-                 exchange_rate = getExchangeRateDOM(sourceCountry,destinationCountry);
-            case XPATH:
-                 exchange_rate =getExchangeRateXPath(sourceCountry,destinationCountry);
+    public double getExchangeRate(String sourceCountry, String destinationCountry, String disclaimer) throws ParserException {
 
-        }
-         return exchange_rate;
+        return switch (disclaimer) {
+            case "DOM" -> getExchangeRateDOM(sourceCountry, destinationCountry);
+            case "XPATH" -> getExchangeRateXPath(sourceCountry, destinationCountry);
+            default -> throw new ParserException("Unsupported parsing method", "ER001");
+        };
     }
 
     @Override
