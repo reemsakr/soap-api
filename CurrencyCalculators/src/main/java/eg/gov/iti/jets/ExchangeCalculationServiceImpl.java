@@ -6,9 +6,11 @@ import jakarta.jws.WebParam;
 import jakarta.jws.WebService;
 import jakarta.xml.soap.SOAPException;
 import jakarta.xml.ws.BindingProvider;
+import jakarta.xml.ws.BindingType;
 
 import java.util.Map;
 
+//@BindingType(value = jakarta.xml.ws.soap.SOAPBinding.SOAP12HTTP_BINDING)
 @WebService(endpointInterface = "eg.gov.iti.jets.ExchangeCalculationService")
 public class ExchangeCalculationServiceImpl implements ExchangeCalculationService {
 

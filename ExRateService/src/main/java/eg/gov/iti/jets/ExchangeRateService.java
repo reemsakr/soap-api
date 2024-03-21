@@ -1,7 +1,6 @@
 package eg.gov.iti.jets;
 
 
-import eg.gov.iti.jets.Enums.Disclaimer;
 import eg.gov.iti.jets.exception.ParserException;
 import jakarta.jws.WebParam;
 import jakarta.jws.WebService;
